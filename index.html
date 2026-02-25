@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Nobel Committee Regrets to Inform You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory: #FAF8F0;
+      --cream: #F5F0E0;
+      --parchment: #EDE8D8;
+      --navy: #1B2845;
+      --navy-deep: #0F1A2E;
+      --gold: #C5A55A;
+      --gold-light: #D4B96E;
+      --gold-dark: #A68A3E;
+      --gold-soft: rgba(197,165,90,0.15);
+      --gold-glow: rgba(197,165,90,0.3);
+      --red-seal: #8B2020;
+      --red-soft: rgba(139,32,32,0.1);
+      --text: #2C2C2C;
+      --text-dim: #6B6560;
+      --text-light: #9A9590;
+      --border: rgba(27,40,69,0.1);
+      --border-gold: rgba(197,165,90,0.3);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', -apple-system, sans-serif;
+      background: var(--ivory);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== SPLASH SCREEN ===== */
+    .splash {
+      position: fixed;
+      inset: 0;
+      background: var(--navy-deep);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .splash.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .splash-seal {
+      width: 120px;
+      height: 120px;
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+      animation: sealPulse 3s ease-in-out infinite;
+    }
+
+    .splash-seal::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 1px solid rgba(197,165,90,0.3);
+      border-radius: 50%;
+    }
+
+    .splash-seal svg { width: 50px; height: 50px; fill: var(--gold); }
+
+    @keyframes sealPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(197,165,90,0.2); }
+      50% { box-shadow: 0 0 40px 10px rgba(197,165,90,0.15); }
+    }
+
+    .splash-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .splash h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 600;
+      color: var(--ivory);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .splash p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      max-width: 480px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .splash .enter-btn {
+      padding: 1.1rem 3rem;
+      background: transparent;
+      border: 2px solid var(--gold);
+      border-radius: 0;
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .splash .enter-btn:hover {
+      background: var(--gold);
+      color: var(--navy-deep);
+    }
+
+    .splash-footer {
+      position: absolute;
+      bottom: 2.5rem;
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== TEXTURE OVERLAY ===== */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 9997;
+    }
+
+    /* ===== CONFIDENTIAL BANNER ===== */
+    .confidential-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9998;
+      padding: 0.5rem 2rem;
+      background: var(--navy-deep);
+      color: var(--gold);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: all 0.5s ease;
+    }
+
+    .confidential-bar.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== LIVE TRACKER ===== */
+    .live-tracker {
+      position: fixed;
+      top: 3.5rem;
+      right: 2rem;
+      z-index: 9996;
+      padding: 1rem 1.25rem;
+      background: white;
+      border: 1px solid var(--border-gold);
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      opacity: 0;
+      transition: opacity 0.5s;
+      max-width: 200px;
+    }
+
+    .live-tracker.visible { opacity: 1; }
+
+    .live-tracker-label {
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red-seal);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .live-tracker-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--red-seal);
+      border-radius: 50%;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+    .live-tracker-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .live-tracker-sub {
+      font-size: 0.6rem;
+      color: var(--text-dim);
+      margin-top: 0.15rem;
+    }
+
+    /* ===== CONTAINERS ===== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .display {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 6rem;
+      position: relative;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+    }
+
+    .hero-border {
+      position: absolute;
+      inset: 2rem;
+      border: 1px solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .hero-corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--gold);
+      border-style: solid;
+    }
+
+    .hero-corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .hero-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .hero-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+    .hero-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    .hero-seal {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.2s forwards;
+    }
+
+    .hero-ref {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.3s forwards;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      max-width: 800px;
+      margin-bottom: 1.5rem;
+      color: var(--navy);
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.5s forwards;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 400;
+      color: var(--text-dim);
+      max-width: 600px;
+      line-height: 1.9;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.7s forwards;
+    }
+
+    .hero-date {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      font-style: italic;
+      opacity: 0;
+      animation: fadeUp 1s ease-out 0.9s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: clamp(5rem, 12vw, 8rem) 0;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    section.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-gold);
+    }
+
+    .section-divider .label { flex-shrink: 0; }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: var(--navy);
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+
+    /* ===== LETTER SECTION ===== */
+    .letter {
+      background: white;
+      border: 1px solid var(--border);
+      padding: clamp(2.5rem, 6vw, 4rem);
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+    }
+
+    .letter::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+
+    .letter-head {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .letter-head-seal {
+      width: 50px;
+      height: 50px;
+      flex-shrink: 0;
+    }
+
+    .letter-head-text .label { margin-bottom: 0.25rem; }
+    .letter-head-text p { font-size: 0.8rem; color: var(--text-dim); }
+
+    .letter-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+
+    .letter-body p { margin-bottom: 1.25rem; }
+    .letter-body .highlight { color: var(--navy); font-weight: 600; }
+
+    .letter-signature {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .letter-signature .sig-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .letter-signature .sig-title {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* ===== STAMP ===== */
+    .stamp {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 100px;
+      height: 100px;
+      border: 3px solid var(--red-seal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-15deg);
+      opacity: 0.7;
+    }
+
+    .stamp-text {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.65rem;
+      color: var(--red-seal);
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.1em;
+      line-height: 1.3;
+    }
+
+    /* ===== EVIDENCE CARDS ===== */
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .evidence-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .evidence-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    }
+
+    .evidence-card::before {
+      content: attr(data-exhibit);
+      position: absolute;
+      top: -0.6rem;
+      left: 1.5rem;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      background: var(--ivory);
+      padding: 0 0.5rem;
+    }
+
+    .evidence-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .evidence-card p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .evidence-card .stat {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+      margin: 0.75rem 0;
+    }
+
+    /* ===== DELIBERATION TRANSCRIPT ===== */
+    .transcript {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .transcript-entry {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .transcript-entry:last-child { border-bottom: none; }
+
+    .transcript-speaker {
+      flex-shrink: 0;
+      width: 100px;
+      text-align: right;
+    }
+
+    .transcript-speaker .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .transcript-speaker .role {
+      font-size: 0.6rem;
+      color: var(--text-light);
+      letter-spacing: 0.05em;
+    }
+
+    .transcript-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .transcript-text em { color: var(--text-dim); }
+
+    .transcript-redacted {
+      background: var(--navy);
+      color: var(--navy);
+      padding: 0 0.3rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .transcript-redacted.revealed-text {
+      background: var(--gold-soft);
+      color: var(--text);
+    }
+
+    /* ===== VINOKUR SCALE ===== */
+    .scale-container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .scale-meter {
+      position: relative;
+      height: 60px;
+      background: linear-gradient(90deg, #e8e0d0, var(--gold-light), var(--gold), var(--red-seal));
+      border-radius: 4px;
+      margin: 2rem 0;
+      overflow: hidden;
+    }
+
+    .scale-marker {
+      position: absolute;
+      top: -8px;
+      bottom: -8px;
+      width: 4px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: left 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      left: 0%;
+    }
+
+    .scale-marker::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .scale-input-group {
+      margin-top: 2rem;
+    }
+
+    .scale-input-group label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    .scale-input-group input[type="text"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      background: white;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .scale-input-group input:focus { border-color: var(--gold); }
+
+    .scale-btn {
+      margin-top: 1rem;
+      padding: 0.9rem 2.5rem;
+      background: var(--navy);
+      border: none;
+      color: var(--ivory);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .scale-btn:hover { background: var(--gold-dark); }
+
+    .scale-result {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: white;
+      border: 1px solid var(--border);
+      display: none;
+    }
+
+    .scale-result.show { display: block; animation: fadeUp 0.5s ease-out; }
+
+    .scale-result .score {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+    }
+
+    .scale-result .verdict {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-top: 0.5rem;
+      line-height: 1.7;
+    }
+
+    /* ===== VOTING SIMULATION ===== */
+    .voting-panel {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+
+    .voting-round {
+      margin-bottom: 2rem;
+    }
+
+    .voting-round-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .voting-round-header h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--navy);
+    }
+
+    .voting-round-header .status {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+    }
+
+    .status-complete { background: rgba(76,175,80,0.1); color: #2e7d32; }
+    .status-failed { background: var(--red-soft); color: var(--red-seal); }
+    .status-pending { background: var(--gold-soft); color: var(--gold-dark); }
+
+    .voting-bar {
+      height: 8px;
+      background: var(--cream);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .voting-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+
+    .fill-gold { background: var(--gold); }
+    .fill-navy { background: var(--navy); }
+
+    .voting-detail {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .vote-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gold);
+      border: none;
+      color: var(--navy-deep);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1rem;
+    }
+
+    .vote-btn:hover { background: var(--gold-dark); color: white; }
+    .vote-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ===== SPEECH GENERATOR ===== */
+    .speech-generator {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .speech-output {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      margin-top: 2rem;
+      min-height: 200px;
+      text-align: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.9;
+      color: var(--text);
+      position: relative;
+      display: none;
+    }
+
+    .speech-output.show { display: block; animation: fadeUp 0.5s ease-out; }
+
+    .speech-output .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.2em;
+      background: var(--navy);
+      animation: cursorBlink 0.8s ease-in-out infinite;
+      vertical-align: text-bottom;
+    }
+
+    @keyframes cursorBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* ===== APOLOGY SECTION ===== */
+    .apology-letter {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--cream);
+      border: 2px solid var(--border-gold);
+      padding: clamp(2.5rem, 6vw, 4rem);
+      position: relative;
+    }
+
+    .apology-letter::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 4px;
+      right: -4px;
+      top: 4px;
+      border: 1px solid var(--border-gold);
+      z-index: -1;
+    }
+
+    /* ===== STATS BAR ===== */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: clamp(2rem, 6vw, 5rem);
+      flex-wrap: wrap;
+      padding: 4rem 2rem;
+      background: var(--navy-deep);
+      text-align: center;
+    }
+
+    .stat-item .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .stat-item .stat-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.25rem;
+    }
+
+    /* ===== KERRY IMAGE SECTIONS ===== */
+    .kerry-portrait {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto 2rem;
+      display: block;
+      border: 1px solid var(--border);
+      padding: 8px;
+      background: white;
+    }
+
+    .kerry-portrait img {
+      width: 100%;
+      display: block;
+    }
+
+    .portrait-caption {
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-light);
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== IMAGE PLACEHOLDERS ===== */
+    .image-frame {
+      background: var(--cream);
+      border: 1px solid var(--border-gold);
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-frame img {
+      width: 100%;
+      display: block;
+    }
+
+    .image-frame .caption {
+      font-size: 0.6rem;
+      color: var(--text-light);
+      text-align: center;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--navy-deep);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 2;
+    }
+
+    .footer .footer-seal {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 1.5rem;
+      opacity: 0.3;
+    }
+
+    /* ===== EASTER EGG: KONAMI ===== */
+    .konami-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,26,46,0.95);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .konami-overlay.show { display: flex; }
+
+    .konami-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .konami-content p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 500px;
+    }
+
+    .konami-close {
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .stamp { display: none; }
+      .live-tracker { display: none; }
+      .transcript-entry { flex-direction: column; gap: 0.5rem; }
+      .transcript-speaker { width: auto; text-align: left; }
+      .stats-bar { gap: 2rem; }
+      .evidence-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== CLICK COUNTER EASTER EGG ===== */
+    .click-counter {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 9999;
+      font-size: 0.6rem;
+      color: var(--text-light);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .click-counter.show { opacity: 1; }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border-gold);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-item:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -3.35rem;
+      top: 0.3rem;
+      width: 10px;
+      height: 10px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      background: var(--ivory);
+    }
+
+    .timeline-year {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-event {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <div class="splash" id="splash">
+    <div class="splash-seal">
+      <svg viewBox="0 0 24 24"><path d="M12 2L13.09 8.26L18 6L14.74 10.91L21 12L14.74 13.09L18 18L13.09 15.74L12 22L10.91 15.74L6 18L9.26 13.09L3 12L9.26 10.91L6 6L10.91 8.26L12 2Z"/></svg>
+    </div>
+    <div class="splash-label">Nobelkommittén &middot; Stockholm</div>
+    <h1>Confidential Correspondence</h1>
+    <p>The following document contains official records from the Norwegian Nobel Committee regarding Case No. NP-2026-VNK. Unauthorized distribution is strongly discouraged but honestly quite understandable.</p>
+    <button class="enter-btn" onclick="enterSite()">Open Sealed Envelope</button>
+    <div class="splash-footer">Norwegian Nobel Committee &middot; Henrik Ibsens gate 51 &middot; 0255 Oslo, Norway</div>
+  </div>
+
+  <!-- CONFIDENTIAL BANNER -->
+  <div class="confidential-bar" id="confBar">
+    Nobelkommittén &middot; Strictly Confidential &middot; Case NP-2026-VNK &middot; Do Not Redistribute
+  </div>
+
+  <!-- LIVE TRACKER -->
+  <div class="live-tracker" id="liveTracker">
+    <div class="live-tracker-label">Arguments Won</div>
+    <div class="live-tracker-value" id="argCounter">0</div>
+    <div class="live-tracker-sub">and counting (est.)</div>
+  </div>
+
+  <!-- CLICK COUNTER EASTER EGG -->
+  <div class="click-counter" id="clickCounter"></div>
+
+  <!-- ===== HERO ===== -->
+  <div class="hero" id="mainContent" style="display:none;">
+    <div class="hero-border">
+      <div class="hero-corner tl"></div>
+      <div class="hero-corner tr"></div>
+      <div class="hero-corner bl"></div>
+      <div class="hero-corner br"></div>
+    </div>
+
+    <div class="hero-seal">
+      <svg viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="40" r="38" stroke="#C5A55A" stroke-width="1.5"/>
+        <circle cx="40" cy="40" r="32" stroke="#C5A55A" stroke-width="0.5"/>
+        <path d="M40 15L43.09 28.26L55 22L48.74 34.91L62 38L48.74 41.09L55 54L43.09 47.74L40 62L36.91 47.74L25 54L31.26 41.09L18 38L31.26 34.91L25 22L36.91 28.26L40 15Z" fill="#C5A55A"/>
+      </svg>
+    </div>
+
+    <div class="hero-ref">Case File NP-2026-VNK &middot; Classification: Unprecedented</div>
+
+    <h1 class="display hero-title">The Nobel Committee Regrets to Inform You</h1>
+
+    <p class="hero-subtitle">
+      That the 2026 Nobel Prize in Applied Argumentation has been withdrawn from consideration following the nomination of <strong>Kerry Vinokur</strong>, who rendered all other candidates psychologically unfit to compete.
+    </p>
+
+    <p class="hero-date">Filed: 25 February 2026 &middot; Oslo, Norway</p>
+  </div>
+
+  <!-- ===== THE NOMINATION ===== -->
+  <section id="nomination">
+    <div class="container">
+      <div class="section-divider"><span class="label">Section I &middot; The Nomination</span></div>
+
+      <div class="letter">
+        <div class="stamp">
+          <div class="stamp-text">Received<br>& Filed<br>2026</div>
+        </div>
+
+        <div class="letter-head">
+          <div class="letter-head-seal">
+            <svg viewBox="0 0 50 50" fill="none">
+              <circle cx="25" cy="25" r="23" stroke="#C5A55A" stroke-width="1"/>
+              <path d="M25 10L27.5 20L35 16L30.5 24.5L40 27L30.5 29.5L35 38L27.5 34L25 44L22.5 34L15 38L19.5 29.5L10 27L19.5 24.5L15 16L22.5 20L25 10Z" fill="#C5A55A"/>
+            </svg>
+          </div>
+          <div class="letter-head-text">
+            <div class="label">Norwegian Nobel Committee</div>
+            <p>Office of the Permanent Secretary</p>
+          </div>
+        </div>
+
+        <div class="letter-body">
+          <p>Dear Members of the International Legal Community,</p>
+          <p>It is with a mixture of admiration and deep institutional concern that we write regarding the nomination of <span class="highlight">Kerry Vinokur</span> for the 2026 Nobel Prize in Applied Argumentation, a category we were forced to invent specifically to accommodate her qualifications.</p>
+          <p>Ms. Vinokur, a Director at <span class="highlight">Jason Michael Smith Inc Attorneys</span>, was brought to our attention following a formal petition signed by 847 opposing counsel members, all of whom described the experience of facing her in litigation as "profoundly clarifying in a way that made them question their career choices."</p>
+          <p>Upon review, the Committee unanimously agreed that her abilities in bank litigation, insolvency proceedings, and commercial dispute resolution constitute what can only be described as a <span class="highlight">force of nature masquerading as a legal professional</span>.</p>
+          <p>We regret to inform you that the award has been suspended. The reasons follow.</p>
+        </div>
+
+        <div class="letter-signature">
+          <div class="sig-name">Prof. Astrid Lindqvist</div>
+          <div class="sig-title">Chair, Norwegian Nobel Committee &middot; Oslo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CAREER TIMELINE ===== -->
+  <section id="timeline">
+    <div class="container">
+      <div class="section-divider"><span class="label">Section II &middot; Subject History</span></div>
+
+      <div class="section-header">
+        <h2 class="display section-title">A Career of Calculated Excellence</h2>
+        <p class="section-desc">The Committee's investigation into Kerry Vinokur's professional trajectory revealed a pattern so consistent it borders on suspicious.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item fade-in">
+          <div class="timeline-year">Formative Years</div>
+          <div class="timeline-event">Acquires BA and LLB</div>
+          <div class="timeline-desc">Multiple sources confirm Kerry Vinokur completed not one but TWO degrees, which the Committee notes is already showing off. Most people struggle with one. She collected them like frequent flyer miles.</div>
+        </div>
+        <div class="timeline-item fade-in">
+          <div class="timeline-year">2014</div>
+          <div class="timeline-event">Admitted as Attorney</div>
+          <div class="timeline-desc">The South African legal profession formally gained a member who would spend the next decade making opposing counsel develop nervous tics. Several firms reportedly updated their insurance policies that same week.</div>
+        </div>
+        <div class="timeline-item fade-in">
+          <div class="timeline-year">2014 Onwards</div>
+          <div class="timeline-event">Specializes in Making People Pay</div>
+          <div class="timeline-desc">Kerry chooses bank litigation, insolvency, and commercial litigation as her practice areas. Translation: she helps people get their money, takes apart companies that can't pay their debts, and argues in court for a living. The trifecta of "you do not want to be on the other side of this."</div>
+        </div>
+        <div class="timeline-item fade-in">
+          <div class="timeline-year">Present Day</div>
+          <div class="timeline-event">Director, JMS Inc Attorneys</div>
+          <div class="timeline-desc">Now a Director at a national firm with offices in Johannesburg, Cape Town, and Durban, Kerry operates across the entire country. The Committee has received unconfirmed reports that some defendants have attempted to relocate to a fourth city just to avoid her jurisdiction.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-item">
+      <div class="stat-number" data-target="847">0</div>
+      <div class="stat-label">Opposing Counsel Surveyed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="100">0</div>
+      <div class="stat-label">% Said "Formidable"</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="3">0</div>
+      <div class="stat-label">Offices Nationwide</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="12">0</div>
+      <div class="stat-label">Years of Excellence</div>
+    </div>
+  </div>
+
+  <!-- ===== THE EVIDENCE ===== -->
+  <section id="evidence">
+    <div class="container">
+      <div class="section-divider"><span class="label">Section III &middot; Evidence Submitted</span></div>
+
+      <div class="section-header">
+        <h2 class="display section-title">Exhibits A through F</h2>
+        <p class="section-desc">The following evidence was submitted by various international bodies in support of the nomination. Each exhibit has been independently verified and deemed "frankly a bit intimidating" by our research staff.</p>
+      </div>
+
+      <div class="evidence-grid">
+        <div class="evidence-card fade-in" data-exhibit="Exhibit A">
+          <h3>The Argument Index</h3>
+          <div class="stat">99.7</div>
+          <p>Persuasion Index Score, as measured by the Stockholm Institute of Rhetorical Sciences. The global average is 34. The previous record was 71, held by a retired judge who "practiced in the shower."</p>
+        </div>
+
+        <div class="evidence-card fade-in" data-exhibit="Exhibit B">
+          <h3>Opposing Counsel Survey</h3>
+          <div class="stat">23%</div>
+          <p>Of lawyers who have faced Kerry in court reported experiencing what psychologists now classify as "Vinokur Syndrome": a temporary but vivid awareness that your argument has no legs.</p>
+        </div>
+
+        <div class="evidence-card fade-in" data-exhibit="Exhibit C">
+          <h3>The Courtroom Effect</h3>
+          <div class="stat">4.2s</div>
+          <p>Average time, in seconds, before opposing counsel's confidence begins to visibly erode once Kerry begins her opening statement. Down from 11 seconds in 2018, suggesting she's getting faster.</p>
+        </div>
+
+        <div class="evidence-card fade-in" data-exhibit="Exhibit D">
+          <h3>National Credit Act Mastery</h3>
+          <div class="stat">∞</div>
+          <p>Depth of knowledge regarding the National Credit Act, the Companies Act, and related legislation. The Committee attempted to quantify this but our instruments were insufficient.</p>
+        </div>
+
+        <div class="evidence-card fade-in" data-exhibit="Exhibit E">
+          <h3>Settlement Velocity</h3>
+          <div class="stat">3.1x</div>
+          <p>Cases involving Kerry reach resolution 3.1 times faster than the national average. The Committee attributes this to what one anonymized respondent called "the sudden clarity of knowing you're going to lose."</p>
+        </div>
+
+        <div class="evidence-card fade-in" data-exhibit="Exhibit F">
+          <h3>Geographic Reach</h3>
+          <div class="stat">3</div>
+          <p>Major South African cities where Kerry maintains a professional presence: Johannesburg, Cape Town, and Durban. Applications for a fourth office have been preemptively denied by competitors citing "market saturation of competence."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMMITTEE DELIBERATIONS ===== -->
+  <section id="deliberations">
+    <div class="container">
+      <div class="section-divider"><span class="label">Section IV &middot; Committee Deliberations</span></div>
+
+      <div class="section-header">
+        <h2 class="display section-title">Transcript of Proceedings</h2>
+        <p class="section-desc">The following is an abridged record of the Nobel Committee's closed-door deliberation session regarding the Vinokur nomination. Some portions have been redacted. Click redacted text to reveal.</p>
+      </div>
+
+      <div class="transcript">
+        <div class="transcript-entry fade-in">
+          <div class="transcript-speaker">
+            <div class="name">Prof. Lindqvist</div>
+            <div class="role">Chair</div>
+          </div>
+          <div class="transcript-text">
+            Colleagues, we are here to discuss the nomination of Kerry Vinokur for the newly created Nobel Prize in Applied Argumentation. I trust everyone has reviewed the 400-page dossier.
+          </div>
+        </div>
+
+        <div class="transcript-entry fade-in">
+          <div class="transcript-speaker">
+            <div class="name">Dr. Eriksson</div>
+            <div class="role">Member</div>
+          </div>
+          <div class="transcript-text">
+            I've reviewed it three times. Each reading made me more certain we're dealing with someone who has <span class="transcript-redacted" onclick="this.classList.toggle('revealed-text')">fundamentally broken the scale we use to measure legal excellence</span>.
+          </div>
+        </div>
+
+        <div class="transcript-entry fade-in">
+          <div class="transcript-speaker">
+            <div class="name">Prof. Nygaard</div>
+            <div class="role">Member</div>
+          </div>
+          <div class="transcript-text">
+            My concern is precedent. If we award this to Vinokur, what message does that send? That one person can be <span class="transcript-redacted" onclick="this.classList.toggle('revealed-text')">so unreasonably good at their profession that an entirely new Nobel category must be created just to acknowledge them</span>? Because yes, that is exactly what happened, and I'm fine with it.
+          </div>
+        </div>
+
+        <div class="transcript-entry fade-in">
+          <div class="transcript-speaker">
+            <div class="name">Dr. Bjørnstad</div>
+            <div class="role">Member</div>
+          </div>
+          <div class="transcript-text">
+            I interviewed three of the other nominees. One has taken up pottery. Another is "exploring options outside of law." The third simply replied with a link to Kerry's JMS Inc profile and the word <span class="transcript-redacted" onclick="this.classList.toggle('revealed-text')">"exactly."</span>
+          </div>
+        </div>
+
+        <div class="transcript-entry fade-in">
+          <div class="transcript-speaker">
+            <div class="name">Prof. Lindqvist</div>
+            <div class="role">Chair</div>
+          </div>
+          <div class="transcript-text">
+            Then we are in agreement. The award cannot proceed. Not because Ms. Vinokur is undeserving, but because her nomination has caused <span class="transcript-redacted" onclick="this.classList.toggle('revealed-text')">a full psychological collapse among the remaining candidates, three of whom have formally requested that the Committee "just give it to her and stop pretending this was ever a competition."</span>
+          </div>
+        </div>
+
+        <div class="transcript-entry fade-in">
+          <div class="transcript-speaker">
+            <div class="name">Dr. Eriksson</div>
+            <div class="role">Member</div>
+          </div>
+          <div class="transcript-text">
+            For the record, I would like to note that Kerry Vinokur is the first person in the 125-year history of the Nobel Prize to have an award rescinded not for scandal, not for controversy, but for <span class="transcript-redacted" onclick="this.classList.toggle('revealed-text')">being so clearly the correct choice that the competition became philosophically meaningless</span>. <em>[Audible murmuring. Two members appear to be clapping.]</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERACTIVE: THE VINOKUR SCALE ===== -->
+  <section id="scale">
+    <div class="container">
+      <div class="section-divider"><span class="label">Section V &middot; Interactive Assessment</span></div>
+
+      <div class="section-header">
+        <h2 class="display section-title">The Vinokur Scale&trade;</h2>
+        <p class="section-desc">Following the nomination, the Stockholm Institute of Rhetorical Sciences adopted "The Vinokur" as the standard unit of argumentative ability. Test your own rating below.</p>
+      </div>
+
+      <div class="scale-container">
+        <div class="scale-meter">
+          <div class="scale-marker" id="scaleMarker" data-label="You"></div>
+        </div>
+        <div class="scale-labels">
+          <span>0.0 — Agreeable</span>
+          <span>0.5 — Competent</span>
+          <span>1.0 — Full Vinokur</span>
+        </div>
+
+        <div class="scale-input-group">
+          <label>Enter your strongest argument for anything</label>
+          <input type="text" id="scaleInput" placeholder="e.g., 'Pineapple belongs on pizza'">
+          <br>
+          <button class="scale-btn" onclick="measureScale()">Measure My Vinokur Rating</button>
+        </div>
+
+        <div class="scale-result" id="scaleResult">
+          <div class="score" id="scaleScore"></div>
+          <div class="verdict" id="scaleVerdict"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERACTIVE: VOTING SIMULATION ===== -->
+  <section id="voting">
+    <div class="container">
+      <div class="section-divider"><span class="label">Section VI &middot; Voting Record</span></div>
+
+      <div class="section-header">
+        <h2 class="display section-title">Committee Vote Simulation</h2>
+        <p class="section-desc">Relive the Committee's historic three-round voting process. Each round produced increasingly unanimous results, which the Committee described as "statistically improbable but emotionally inevitable."</p>
+      </div>
+
+      <div class="voting-panel">
+        <div class="voting-round">
+          <div class="voting-round-header">
+            <h4>Round 1: Initial Nomination Vote</h4>
+            <span class="status status-complete">Complete</span>
+          </div>
+          <div class="voting-bar"><div class="voting-fill fill-gold" id="vote1" style="width:0%"></div></div>
+          <div class="voting-detail">In Favour: <strong>4 of 5</strong> &middot; Dr. Bjørnstad abstained (said he "needed a moment")</div>
+        </div>
+
+        <div class="voting-round">
+          <div class="voting-round-header">
+            <h4>Round 2: Confirmation of Excellence</h4>
+            <span class="status status-complete">Complete</span>
+          </div>
+          <div class="voting-bar"><div class="voting-fill fill-gold" id="vote2" style="width:0%"></div></div>
+          <div class="voting-detail">In Favour: <strong>5 of 5</strong> &middot; Bjørnstad returned "fully composed" and voted yes</div>
+        </div>
+
+        <div class="voting-round">
+          <div class="voting-round-header">
+            <h4>Round 3: Award Suspension</h4>
+            <span class="status status-failed">Suspended</span>
+          </div>
+          <div class="voting-bar"><div class="voting-fill fill-navy" id="vote3" style="width:0%"></div></div>
+          <div class="voting-detail">In Favour of Suspension: <strong>5 of 5</strong> &middot; "With deep reluctance and genuine admiration"</div>
+        </div>
+
+        <button class="vote-btn" id="voteBtn" onclick="runVote()">Replay the Vote</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERACTIVE: SPEECH GENERATOR ===== -->
+  <section id="speech">
+    <div class="container">
+      <div class="section-divider"><span class="label">Section VII &middot; The Speech That Never Was</span></div>
+
+      <div class="section-header">
+        <h2 class="display section-title">Acceptance Speech Generator</h2>
+        <p class="section-desc">Though the award was suspended, the Committee commissioned a draft acceptance speech. Our AI reconstruction of what Kerry might have said, based on her known rhetorical patterns.</p>
+      </div>
+
+      <div class="speech-generator">
+        <button class="scale-btn" onclick="generateSpeech()">Generate Kerry's Speech</button>
+        <div class="speech-output" id="speechOutput"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== THE FORMAL APOLOGY ===== -->
+  <section id="apology">
+    <div class="container">
+      <div class="section-divider"><span class="label">Section VIII &middot; Official Apology</span></div>
+
+      <div class="section-header">
+        <h2 class="display section-title">A Letter of Formal Apology</h2>
+        <p class="section-desc">Addressed to Kerry Vinokur, from the Nobel Committee.</p>
+      </div>
+
+      <div class="apology-letter">
+        <div class="letter-body">
+          <p>Dear Kerry,</p>
+          <p>We owe you an apology. Not for suspending the award (that was, regrettably, necessary for the mental health of the other nominees) but for taking so long to recognize what those who have worked with you, worked alongside you, or made the tactical error of working against you have known for years:</p>
+          <p><span class="highlight">You are exceptionally good at what you do.</span></p>
+          <p>Your combination of legal expertise, professional dedication, and what one anonymous colleague described as "an almost supernatural ability to find the weakness in any argument and then, very politely, drive a truck through it" places you in a category that our existing frameworks simply cannot accommodate.</p>
+          <p>We created a new Nobel Prize category for you, and even that wasn't enough.</p>
+          <p>The South African legal community is fortunate. Your clients are fortunate. Your colleagues at JMS Inc are fortunate. The only people who are not fortunate are those who find themselves on the other side of one of your briefs, and frankly, they were warned.</p>
+          <p>Please accept our highest regards, our genuine admiration, and our sincere hope that you never decide to practice international law, because we are honestly not sure our institution could survive the experience.</p>
+          <p>With the utmost respect,</p>
+        </div>
+        <div class="letter-signature">
+          <div class="sig-name">The Norwegian Nobel Committee</div>
+          <div class="sig-title">All five members, unanimously, for perhaps the first time in history</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    <div class="footer-seal">
+      <svg viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="18" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+        <path d="M20 8L21.5 16L27 13L24 18.5L32 20L24 21.5L27 27L21.5 24L20 32L18.5 24L13 27L16 21.5L8 20L16 18.5L13 13L18.5 16L20 8Z" fill="rgba(255,255,255,0.3)"/>
+      </svg>
+    </div>
+    <p>
+      Norwegian Nobel Committee &middot; Henrik Ibsens gate 51 &middot; 0255 Oslo
+      <br>
+      Case No. NP-2026-VNK &middot; Filed under "Exceptional Circumstances"
+      <br>
+      This document is entirely fictional and was created to celebrate someone extraordinary.
+      <br><br>
+      Made with admiration, a sense of humor, and zero actual Nobel authority.
+    </p>
+  </div>
+
+  <!-- KONAMI EASTER EGG OVERLAY -->
+  <div class="konami-overlay" id="konamiOverlay">
+    <div class="konami-content">
+      <h2>You Found the Secret File</h2>
+      <p>Classified Addendum: The Committee privately acknowledged that Kerry Vinokur is, in their professional opinion, "the kind of person who makes you want to be better at your own job, which is both inspiring and slightly annoying." This addendum was filed under "Compliments That Double as Competitive Motivation."</p>
+      <button class="konami-close" onclick="document.getElementById('konamiOverlay').classList.remove('show')">Seal This Document</button>
+    </div>
+  </div>
+
+  <script>
+    // ===== SPLASH =====
+    function enterSite() {
+      document.getElementById('splash').classList.add('hidden');
+      document.getElementById('mainContent').style.display = 'flex';
+      setTimeout(() => {
+        document.getElementById('confBar').classList.add('visible');
+        document.getElementById('liveTracker').classList.add('visible');
+        startArgCounter();
+      }, 500);
+    }
+
+    // ===== ARGUMENT COUNTER =====
+    function startArgCounter() {
+      const el = document.getElementById('argCounter');
+      let count = 14823;
+      el.textContent = count.toLocaleString();
+      setInterval(() => {
+        count += Math.floor(Math.random() * 3) + 1;
+        el.textContent = count.toLocaleString();
+      }, 4000);
+    }
+
+    // ===== SCROLL REVEALS =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('section, .fade-in').forEach(el => observer.observe(el));
+
+    // ===== STAT COUNTER ANIMATION =====
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const nums = entry.target.querySelectorAll('[data-target]');
+          nums.forEach(num => {
+            const target = parseInt(num.dataset.target);
+            animateValue(num, 0, target, 2000);
+          });
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statObserver.observe(document.getElementById('statsBar'));
+
+    function animateValue(el, start, end, duration) {
+      const range = end - start;
+      const startTime = performance.now();
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(start + range * eased).toLocaleString();
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    // ===== VINOKUR SCALE =====
+    function measureScale() {
+      const input = document.getElementById('scaleInput').value.trim();
+      if (!input) return;
+
+      const marker = document.getElementById('scaleMarker');
+      const result = document.getElementById('scaleResult');
+      const score = document.getElementById('scaleScore');
+      const verdict = document.getElementById('scaleVerdict');
+
+      // Always a low score (Kerry is the benchmark)
+      const raw = (input.length % 40) / 100 + 0.05;
+      const userScore = Math.min(raw, 0.42).toFixed(2);
+
+      marker.style.left = (userScore * 100) + '%';
+      marker.setAttribute('data-label', userScore + ' Vinokurs');
+
+      const verdicts = [
+        `${userScore} Vinokurs. That's... not great. For context, the average law student scores 0.15, and a particularly persuasive golden retriever once scored 0.09. Kerry scores a perfect 1.0, a number previously thought to be theoretical.`,
+        `${userScore} Vinokurs. Look, that's a respectable score in most contexts. You could probably win an argument at a dinner party. But Kerry Vinokur operates on a level where dinner party arguments spontaneously settle before dessert arrives.`,
+        `${userScore} Vinokurs. The Committee wants you to know this isn't personal. It's just that the gap between you and Kerry is roughly equivalent to the gap between a paper airplane and the International Space Station. Both technically fly.`,
+        `${userScore} Vinokurs. Before you feel bad: world leaders, Supreme Court justices, and at least one Pope have all scored below 0.5 on the Vinokur Scale. There is no shame in being human.`
+      ];
+
+      score.textContent = userScore;
+      verdict.textContent = verdicts[Math.floor(Math.random() * verdicts.length)];
+      result.classList.add('show');
+    }
+
+    // ===== VOTING SIMULATION =====
+    let voteRunning = false;
+    function runVote() {
+      if (voteRunning) return;
+      voteRunning = true;
+      const btn = document.getElementById('voteBtn');
+      btn.disabled = true;
+
+      // Reset
+      document.getElementById('vote1').style.width = '0%';
+      document.getElementById('vote2').style.width = '0%';
+      document.getElementById('vote3').style.width = '0%';
+
+      setTimeout(() => { document.getElementById('vote1').style.width = '80%'; }, 300);
+      setTimeout(() => { document.getElementById('vote2').style.width = '100%'; }, 1500);
+      setTimeout(() => { document.getElementById('vote3').style.width = '100%'; }, 2700);
+      setTimeout(() => { btn.disabled = false; voteRunning = false; }, 4000);
+    }
+
+    // Auto-run vote when visible
+    const voteObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { runVote(); voteObserver.unobserve(entry.target); }
+      });
+    }, { threshold: 0.5 });
+    voteObserver.observe(document.getElementById('voting'));
+
+    // ===== SPEECH GENERATOR =====
+    function generateSpeech() {
+      const output = document.getElementById('speechOutput');
+      output.classList.add('show');
+      output.innerHTML = '<span class="cursor"></span>';
+
+      const speeches = [
+        `Members of the Committee, distinguished guests, people who have apparently decided that my ability to construct a legal argument warrants an international award...\n\nI am, for once, at a slight loss for words. And I assure you, that has never happened in court.\n\nThey say behind every great attorney is a mountain of case law, an unreasonable amount of coffee, and at least one opposing counsel who underestimated them. I'd like to thank all three.\n\nTo my colleagues at JMS Inc: you are the reason I can operate across three cities without losing my mind. To my clients: thank you for trusting me with your fights. I take every single one personally, which my therapist says is "something we should talk about" but which I consider a professional advantage.\n\nAnd to the opposing counsel who reportedly signed a petition that led to this nomination: I forgive you. I also remember all of your names and every argument you lost, but I forgive you.\n\nThank you. Now if you'll excuse me, I have a brief to file.`
+      ];
+
+      const text = speeches[0];
+      let i = 0;
+
+      function typeChar() {
+        if (i < text.length) {
+          const char = text[i] === '\n' ? '<br>' : text[i];
+          output.innerHTML = output.innerHTML.replace('<span class="cursor"></span>', '') + char + '<span class="cursor"></span>';
+          i++;
+          const delay = text[i - 1] === '.' ? 80 : text[i - 1] === ',' ? 50 : text[i - 1] === '\n' ? 120 : 25;
+          setTimeout(typeChar, delay);
+        }
+      }
+
+      typeChar();
+    }
+
+    // ===== KONAMI CODE =====
+    const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+    let konamiPos = 0;
+    document.addEventListener('keydown', (e) => {
+      if (e.keyCode === konamiCode[konamiPos]) {
+        konamiPos++;
+        if (konamiPos === konamiCode.length) {
+          document.getElementById('konamiOverlay').classList.add('show');
+          konamiPos = 0;
+        }
+      } else {
+        konamiPos = 0;
+      }
+    });
+
+    // ===== CLICK COUNTER EASTER EGG =====
+    let clicks = 0;
+    document.addEventListener('click', () => {
+      clicks++;
+      const counter = document.getElementById('clickCounter');
+      if (clicks > 15) {
+        counter.classList.add('show');
+        const messages = {
+          16: 'The Committee has noticed you clicking.',
+          25: 'That\'s quite a lot of clicking. Kerry would have found what she was looking for by now.',
+          40: 'At this rate, you\'re at approximately 0.02 Vinokurs of investigative thoroughness.',
+          60: 'The Committee is impressed by your persistence, if not your efficiency.',
+          100: 'You\'ve clicked 100 times. Kerry Vinokur once won a case in fewer keystrokes.'
+        };
+        counter.textContent = messages[clicks] || (clicks > 100 ? `Click #${clicks}. The Committee has left for the day.` : '');
+      }
+    });
+
+    // ===== CONSOLE EASTER EGG =====
+    console.log('%c🏆 CASE NO. NP-2026-VNK', 'font-size: 24px; font-weight: bold; color: #C5A55A;');
+    console.log('%cThe Nobel Committee has noted your curiosity.', 'font-size: 14px; color: #6B6560;');
+    console.log('%cKerry Vinokur\'s console.log game is stronger than yours.', 'font-size: 12px; color: #9A9590;');
+  </script>
+
+</body>
+</html>
